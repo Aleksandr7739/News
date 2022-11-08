@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News</title>
+    <style>
+        #container {
+            background-color: blanchedalmond;
+        }
+
+        #but {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: blanchedalmond;
+            font-size: 1.5rem;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="container"></div>
+    <button id="but">NEWS</button>
+
+    <script>
+
+
+
+        document.getElementById('but').onclick = () => {
+            fetch('https://newsapi.org/v2/top-headlines?country=ru&apiKey=a124995013204bb59a0eeed732e0f56f')
+                .then(response => response.json())
+                .then(result => result.articles.forEach((element, index) => {
+                    document.getElementById('container').innerHTML += `<p style="border: 1px solid #755A57; font-size: 1.5rem; font-family: Verdana, Arial, Helvetica, sans-serif; background-color: white">${index + 1}. ${element.title}  <br> ${element.discription} <br> <a href = "${element.url}"> подробнее </a> <br></p>`
+                }))
+
+        }
+
+
+
+
+    </script>
+
+</body>
+
+</html>
